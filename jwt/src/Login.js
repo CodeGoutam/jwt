@@ -15,6 +15,7 @@ const Login = () => {
     const submitHandle = async (e) => {
         e.preventDefault();
         await fetch('https://jwt-backend-hb2j.onrender.com/api/login', {
+        // await fetch('http://localhost:5000/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -23,9 +24,15 @@ const Login = () => {
             })
         }).then(async (res) => {
             res = await res.json()
-            localStorage.setItem("authToken", res.authToken)
-            console.log(res.check);
-            nav('/')
+            if (res.success == true) {
+                localStorage.setItem("authToken", res.authToken)
+                console.log(res.check);
+                nav('/')
+            }
+            else if (res.success == false) {
+                alert('Invalid details')
+            }
+
             console.log('data sent');
         }).catch((error) => {
             console.log('data not sent', error);

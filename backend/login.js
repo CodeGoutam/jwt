@@ -7,7 +7,8 @@ const secretKey = "hemant"
 router.post("/login", async (req, res) => {
     const check = await users.findOne(
         { email: req.body.email, password: req.body.password })
-    if (check) {
+    console.log("check value", check);
+    if (check!==null) {
         let token = jwt.sign({ userId: check._id, password: check.password }, secretKey, { expiresIn: '1h' })
         res.send({ success: true, authToken: token, check })
         // console.log(check.id);
