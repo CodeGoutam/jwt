@@ -12,7 +12,7 @@ const SignUp = () => {
     }
     const submitHandle = async (e) => {
         e.preventDefault();
-        const res = await fetch('http://localhost:5000/api/signup', {
+        const res = await fetch('https://jwt-backend-hb2j.onrender.com/api/signup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
